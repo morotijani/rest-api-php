@@ -66,11 +66,10 @@
 				// code...
 				$columns .= $key . ' = ?, ';
 			}
-			//$columns = rtrim(', ', $columns);
+			$columns = rtrim($columns, ', ');
 			$array_values = array_values($params);
 
-			$sql = "UPDATE users SET $columns WHERE user_id = $id";
-			dnd($sql);
+			$sql = "UPDATE users SET $columns WHERE user_id = '" . $id . "'";
 			try {
 				$data = run($this->db, $sql, $array_values);
 				return $data;
