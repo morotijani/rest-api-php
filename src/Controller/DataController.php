@@ -103,14 +103,24 @@
 			if (!$validationBody) {
 				return $validation;
 			}
-			$this->dataGateway->insert($params);
 			
-			$response['status_code_header'] = 'HTTP/1.1 201 Created';
-			$response['body'] = json_encode([
+			$insert = $this->dataGateway->insert($params);
+			if ($insert) {
+				// code...
+				$response['status_code_header'] = 'HTTP/1.1 201 Created';
+				$response['body'] = json_encode([
 					'status' => 'success',
 					'message' => 'User account created!'
-				]);;
+				]);
+			} else {
+				$response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
+				$response['body'] = json_encode([
+					'status' => 'error',
+					'message' => 'Something went wrong!'
+				]);
+			}
 			return $response;
+			
 		}
 
 		private function validateUser($params) {

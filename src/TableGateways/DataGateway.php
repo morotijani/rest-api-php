@@ -52,11 +52,7 @@
 			$values = rtrim($values, ',');
 
 			$data = run($this->db, "INSERT INTO users ($array_key) VALUES ($values)", $array_values);
-			return $data->rowCount();
-			
-			// if ($data) {
-			// 	return '{"success":"true"}';
-			// }
+			return $data;
 		}
 
 		public function update() {}
