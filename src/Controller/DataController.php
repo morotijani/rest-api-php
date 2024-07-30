@@ -7,8 +7,7 @@
 		private $db;
 		private $requestMethod;
 		private $dataId;
-		private $table;
-		private $params;
+		public $result = "{}";
 
     	private $dataGateway;
 
@@ -20,7 +19,17 @@
 
         	$this->dataGateway = new DataGateway($db);
 
-			if (!isset($_GET['url'])) {
+			if (isset($_GET['url'])) {
+				$rawUrl = $_GET['url'];
+				$URL = explode("/", trim($rawUrl, '/')); // trim the url with any last forward slash
+				$table = $URL[0]; // grab the table name from the get variable
+				unset($URL[0]); // and unset the key 
+				$params = array_values($URL); // reset the remaing urls values keys starting from 0
+
+				if (is_callable([$this, $table])) {
+			 		$this->result = $this->$table($params);
+			 	}
+			} else {
 				$this->index();
 			}
 
@@ -34,18 +43,10 @@
 
 		public function processRequest() {
 
-			$rawUrl = $_GET['url'];
-			$URL = explode("/", trim($rawUrl, '/')); // trim the url with any last forward slash
-			$this->table = $URL[0]; // grab the table name from the get variable
-			unset($URL[0]); // and unset the key 
-			$this->params = array_values($URL); // reset the remaing urls values keys starting from 0
-			dnd($this->params);
 
 			switch ($this->requestMethod) {
 
-
 				case 'GET':
-
 					if ($this->params) {
 						// code...
 						$response = $this->getUser($this->params);
@@ -70,5 +71,27 @@
 			if ($response['body']) {
 				echo $response['body'];
 			}
+		}
+
+		private function users($params = []) {
+			$id = (isset($params[0]) ? $params[0] : NULL);
+			if ($id) {
+				// code...
+				$data = run($this->db, "SELECT * FROM users WHERE user_id = ? LIMIT 1", [$id]);
+				if (is_array($data)) {
+					// code...
+					return json_encode($data);
+				}
+			} else {
+				$data = run($this->db, "SELECT * FROM users", []);
+				if (is_array($data)) {
+					// code...
+					return json_encode($data);
+				} 
+			}
+		}
+
+		private function getAllUsers() {
+			$result = $this->dataGateway()->findAll();
 		}
 	}
