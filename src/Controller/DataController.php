@@ -48,8 +48,7 @@
 			switch ($this->requestMethod) {
 
 				case 'GET':
-					if ($params) {
-						// code...
+					if (isset($params)) {
 						$id = (isset($params[0]) ? $params[0] : NULL);
 						$response = $this->getUser($id);
 					} else {
@@ -60,7 +59,10 @@
 					$response = $this->createUserFromRequest();
 					break;
 				case 'PUT':
-					$response = $this->updateUserFormRequest();
+					if (isset($params)) {
+						$id = (isset($params[0]) ? $params[0] : NULL);
+						$response = $this->updateUserFormRequest($id);
+					}
 					break;
 				case 'DELETE':
 					$response = $this->deleteUser();
@@ -99,7 +101,7 @@
 		private function createUserFromRequest() {
 			$params = (array) json_decode(file_get_contents('php://input'), true);
 			$validation = $this->validateUser($params);
-			$validationBody = isset($validation['body']) ? false : true;
+			$validationBody = (isset($validation['body']) ? false : true);
 			if (!$validationBody) {
 				return $validation;
 			}
@@ -110,7 +112,7 @@
 				$response['status_code_header'] = 'HTTP/1.1 201 Created';
 				$response['body'] = json_encode([
 					'status' => 'success',
-					'message' => 'User account created!'
+					'message' => 'Account created!'
 				]);
 			} else {
 				$response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
@@ -123,14 +125,46 @@
 			
 		}
 
-		private function validateUser($params) {
+		private function updateUserFormRequest($id) {
+			$result = $this->dataGateway->find($id);
+			if (! is_array($result)) {
+				return $this->notFoundResponse();
+			}
+			$params = (array) json_decode(file_get_contents('php://input'), true);
+			$validation = $this->validateUser($params, $id);
+			$validationBody = isset($validation['body']) ? false : true;
+			if (!$validationBody) {
+				return $validation;
+			}
+			$update = $this->dataGateway->update($id, $params);
+			if ($update) {
+				// code...
+				$response['status_code_header'] = 'HTTP/1.1 200 OK';
+				$response['body'] = json_encode([
+					'status' => 'success',
+					'message' => 'Account updated!'
+				]);
+			} else {
+				$response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
+				$response['body'] = json_encode([
+					'status' => 'error',
+					'message' => 'Something went wrong!'
+				]);
+			}
+			return $response;
+		}
+
+		private function validateUser($params, $id = null) {
 			$response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
 
 			if (isset($params['user_email'])) {
 
 				// check if email exist
-				$data = run($this->db, "SELECT * FROM users WHERE user_email = ? LIMIT 1", [$params['user_email']]);
-				if (is_array($data)) {
+				$data = run($this->db, "SELECT * FROM users WHERE user_email = ? LIMIT 1", [$params['user_email']], 'count');
+				if ($id) {
+					$data = run($this->db, "SELECT * FROM users WHERE user_email = ? AND user_id != ? ", [$params['user_email'], $id], 'count');
+				}
+				if ($data > 0) {
 					$response['body'] = json_encode([
 						'status' => 'error',
 						'message' => 'Email, already exist!'
@@ -161,10 +195,12 @@
 				// code...
 				return $this->unprocessableEntityResponse();
 			}
-
-			if (! isset($params['user_password'])) {
-				// code...
-				return $this->unprocessableEntityResponse();
+			
+			if (!$id) {
+				if (! isset($params['user_password'])) {
+					// code...
+					return $this->unprocessableEntityResponse();
+				}
 			}
 
 			return $response;
@@ -181,7 +217,11 @@
 
 		private function notFoundResponse() {
 			$response['status_code_header'] = "HTTP/1.1 404 Not Found";
-			$response['body'] = '{"status": "404", "message" : "User not found!"}';;
+			$response['body'] = json_encode([
+				'status' => 'error',
+				'message' => 'Not found!',
+			]);
+
 			return $response;
 		}
 	}

@@ -28,6 +28,7 @@
 					if (is_array($data)) {
 						return $data;
 					}
+					return false;
 				} catch (\PDOException $e) {
 					exit($e->getMessage);
 				}
@@ -46,16 +47,37 @@
 
 			$values = '';
 			for ($i=0; $i < count($array_keys); $i++) { 
-				// code...
 				$values .= '?,';
 			}
 			$values = rtrim($values, ',');
 
-			$data = run($this->db, "INSERT INTO users ($array_key) VALUES ($values)", $array_values);
-			return $data;
+			try {
+				$data = run($this->db, "INSERT INTO users ($array_key) VALUES ($values)", $array_values);
+				return $data;
+			} catch (\PDOException $e) {
+				exit($get->getMessage());
+			}
 		}
 
-		public function update() {}
+		public function update($id, Array $params) {
+			$array_keys = array_keys($params);
+			$columns = '';
+			foreach ($array_keys as $key) {
+				// code...
+				$columns .= $key . ' = ?, ';
+			}
+			//$columns = rtrim(', ', $columns);
+			$array_values = array_values($params);
+
+			$sql = "UPDATE users SET $columns WHERE user_id = $id";
+			dnd($sql);
+			try {
+				$data = run($this->db, $sql, $array_values);
+				return $data;
+			} catch (\PDOException $e) {
+				exit($e->getMessage());
+			}
+		}
 
 		public function delete() {}
 	
