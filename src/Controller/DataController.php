@@ -42,14 +42,17 @@
 
 
 		public function processRequest() {
+		}
 
+		private function users($params = []) {
 
 			switch ($this->requestMethod) {
 
 				case 'GET':
-					if ($this->params) {
+					if ($params) {
 						// code...
-						$response = $this->getUser($this->params);
+						$id = (isset($params[0]) ? $params[0] : NULL);
+						$response = $this->getUser($id);
 					} else {
 						$response = $this->getAllUsers();
 					}
@@ -67,31 +70,36 @@
 					$response = $this->notFoundResponse();
 					break;
 			}
+
 			header($response['status_code_header']);
 			if ($response['body']) {
-				echo $response['body'];
-			}
-		}
-
-		private function users($params = []) {
-			$id = (isset($params[0]) ? $params[0] : NULL);
-			if ($id) {
-				// code...
-				$data = run($this->db, "SELECT * FROM users WHERE user_id = ? LIMIT 1", [$id]);
-				if (is_array($data)) {
-					// code...
-					return json_encode($data);
-				}
-			} else {
-				$data = run($this->db, "SELECT * FROM users", []);
-				if (is_array($data)) {
-					// code...
-					return json_encode($data);
-				} 
+				return $response['body'];
 			}
 		}
 
 		private function getAllUsers() {
-			$result = $this->dataGateway()->findAll();
+			$result = $this->dataGateway->findAll();
+			if (! $result) {
+				return '{"status": "404", "message" : "No data found!"}';
+			}
+			$response['status_code_header'] = 'HTTP/1.1 200 OK';
+			$response['body'] = json_encode($result);
+			return $response;
+		}
+
+		private function getUser($id) {
+			$result = $this->dataGateway->find($id);
+			if (! $result) {
+				return $this->notFoundResponse();
+			}
+			$response['status_code_header'] = 'HTTP/1.1 200 OK';
+			$response['body'] = json_encode($result);
+			return $response;
+		}
+
+		private function notFoundResponse() {
+			$response['status_code_header'] = "HTTP/1.1 404 Not Found";
+			$response['body'] = '{"status": "404", "message" : "User not found!"}';;
+			return $response;
 		}
 	}
