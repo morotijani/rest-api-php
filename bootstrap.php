@@ -11,7 +11,6 @@
 
 	// read from or write to database
 	function run($conn, $query, $var = []) {
-		//$conn = $dbConnection;
 		$statement = $conn->prepare($query);
 		if ($statement) {
 			// code...
@@ -31,11 +30,3 @@
 		return false;
 
 	}
-
-	function dnd($data) {
-		echo "<pre>";
-		print_r($data);
-		echo "</pre>";
-	    die;
-	}
-	

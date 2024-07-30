@@ -45,7 +45,6 @@
 		}
 
 		private function users($params = []) {
-
 			switch ($this->requestMethod) {
 
 				case 'GET':
@@ -94,6 +93,79 @@
 			}
 			$response['status_code_header'] = 'HTTP/1.1 200 OK';
 			$response['body'] = json_encode($result);
+			return $response;
+		}
+
+		private function createUserFromRequest() {
+			$params = (array) json_decode(file_get_contents('php://input'), true);
+			$validation = $this->validateUser($params);
+			$validationBody = isset($validation['body']) ? false : true;
+			if (!$validationBody) {
+				return $validation;
+			}
+			$this->dataGateway->insert($params);
+			
+			$response['status_code_header'] = 'HTTP/1.1 201 Created';
+			$response['body'] = json_encode([
+					'status' => 'success',
+					'message' => 'User account created!'
+				]);;
+			return $response;
+		}
+
+		private function validateUser($params) {
+			$response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
+
+			if (isset($params['user_email'])) {
+
+				// check if email exist
+				$data = run($this->db, "SELECT * FROM users WHERE user_email = ? LIMIT 1", [$params['user_email']]);
+				if (is_array($data)) {
+					$response['body'] = json_encode([
+						'status' => 'error',
+						'message' => 'Email, already exist!'
+					]);
+				}
+
+				// check email validity
+				if (!filter_var($params['user_email'], FILTER_VALIDATE_EMAIL)) {
+					$response['body'] = json_encode([
+						'status' => 'error',
+						'message' => 'Invalid, email!'
+					]);
+				}
+
+				if (empty($params['user_email']) || $params['user_email'] == '') {
+					// code...
+					$response['body'] = json_encode([
+						'status' => 'error',
+						'message' => 'Email is required!'
+					]);
+				}
+
+			} else {
+				return $this->unprocessableEntityResponse();
+			}
+
+			if (! isset($params['user_fullname'])) {
+				// code...
+				return $this->unprocessableEntityResponse();
+			}
+
+			if (! isset($params['user_password'])) {
+				// code...
+				return $this->unprocessableEntityResponse();
+			}
+
+			return $response;
+		}
+
+		private function unprocessableEntityResponse() {
+			$response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
+			$response['body'] = json_encode([
+				'status' => 'error',
+				'message' => 'Invalid input!',
+			]);
 			return $response;
 		}
 

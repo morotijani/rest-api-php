@@ -1,6 +1,7 @@
 <?php
 	
 	require "../bootstrap.php";
+	require "../src/System/Functions.php";
 
 	use Src\Controller\DataController;
 
