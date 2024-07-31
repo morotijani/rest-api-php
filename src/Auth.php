@@ -1,6 +1,8 @@
 <?php 
 	namespace Src;
 
+	use Src\TableGateways\UserGateway;
+
 	class Auth {
 		public function __construct(private UserGateway $user_gateway, private Jwt $JwtCtrl) {
 	    

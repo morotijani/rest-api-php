@@ -2,21 +2,17 @@
 	// declare(strict_types=1);
 	require "../bootstrap.php";
 
-	require "tokens.php";
-
-
 	use Src\Controller\DataController;
 	use Src\Jwt;
 	use Src\Auth;
-	use Src\UserGateway;
+	use Src\TableGateways\UserGateway;
 
 	$user = new UserGateway($dbConnection);
 
 	$JwtCtrl = new Jwt($_ENV["SECRET_KEY"]);
 	$auth = new Auth($user, $JwtCtrl);
-	//dnd($_SERVER);
+
 	if (! $auth->authenticateJWTToken()) {
-		// code...
 		exit();
 	}
 
@@ -35,7 +31,6 @@
 
 	// echo json_encode(["token" => $token]);
 
-	// $app = new APP;
 	$controller = new DataController($dbConnection, $requestMethod, $userId);
  	if (isset($_GET['url'])) {
  		// code...
@@ -48,31 +43,4 @@
 	 	$result = $controller->result;
 	 	echo $result;
  	}
-
- 	$refresh_token_gateway = new RefreshTokenGateway($dbConnection, $_ENV['SECRET_KEY']);
- 	$refresh_token_gateway->create($refresh_token, $refresh_token_expiry);
-
- 	// function authenticate() {
- 	// 	try {
- 	// 		switch (true) {
- 	// 			case array_ey_exists('HTTP_AUTHORIZATION', $_SERVER):
- 	// 				$authHeader = $_SERVER['HTTP_AUTHORIZATION'];
- 	// 				break;
- 	// 			case array_key_exists('Authorization', $_SERVER): 
-    //                 $authHeader = $_SERVER['Authorization'];
-    //                 break;
- 	// 			default:
- 	// 				// code...
- 	// 				$authHeader = NULL;
- 	// 				break;
- 	// 		}
-
- 	// 		preg_match('/Brearer\s(\S+)/', $authHeader, $matches);
- 	// 		if (!isset($matches[1])) {
- 	// 			throw new \Exception('No Bearer Token!');
- 	// 		}
- 	// 		$jwtVerifier = 
- 	// 	} catch (Exception $e) {
- 			
- 	// 	}
- 	// }
+ 	

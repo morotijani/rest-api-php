@@ -1,5 +1,5 @@
 <?php 
-	namespace Src;
+	namespace Src\TableGateways;
 
 	class UserGateway {
 		private $db = NULL;
