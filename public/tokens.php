@@ -1,18 +1,10 @@
 <?php
 
-	require ("../bootstrap.php");
-
-	use Src\Controller\DataController;
 	use Src\Jwt;
-	use Src\Auth;
-	use Src\TableGateways\UserGateway;
-
-	$user = new UserGateway($dbConnection);
-
 	// contains detailed user information
 	$payload = [
-		"sub" => $user['id'],
-		"name" => $user["name"],
+		"sub" => $user[0]->id,
+		"name" => $user[0]->name,
 		"exp" => time() + 20 // expiration is shorter (20 seconds) for security reasons
 	];
 
@@ -23,7 +15,7 @@
 	$referesh_token_expiry = time() + 432000; // expiration (5 days) to allow for longer-lasting authentication without needing frequent logins
 
 	$refresh_token = $JwtController->encode([
-		"sub" => $user["id"],
+		"sub" => $user[0]->id,
 		"exp" => $referesh_token_expiry
 	]);
 

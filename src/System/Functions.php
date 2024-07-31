@@ -26,6 +26,7 @@
 					} else if ($res == 'lastinsertid') {
 						$response = $conn->lastInserId();
 					}
+					
 					return $response;
 				}				
 			}
