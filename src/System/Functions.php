@@ -8,6 +8,34 @@
 	    die;
 	}
 
+	// read from or write to database
+	function run($conn, $query, $var = [], $res = null) {
+		$statement = $conn->prepare($query);
+		if ($statement) {
+			// code...
+			$check = $statement->execute($var);
+
+			if ($check) {
+				$response = $check;
+				$data = $statement->fetchAll(PDO::FETCH_OBJ); // fetch objects
+				if ($res == 'count') {
+					$response = $statement->rowCount();
+				} else if ($res == 'lastinsertid') {
+					$response = $conn->lastInserId();
+				} else {
+					if (is_array($data) && count($data) > 0) {
+						$response = $data;
+					}
+				}
+				
+			}
+			return $response;
+		}
+
+		return false;
+
+	}
+
 	// Make Date Readable
 	function pretty_date($date){
 		return date("M d, Y h:i A", strtotime($date));

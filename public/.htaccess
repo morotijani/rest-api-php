@@ -8,3 +8,5 @@ RewriteCond %{REQUEST_FILENAME} !-d
 
 #get the query string and display it as this.
 RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
+
+SetEnvIf Authorization "(.*)" HTTP_AUTHORIZATION=$1
