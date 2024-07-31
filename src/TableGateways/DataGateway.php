@@ -15,7 +15,7 @@
 				if (is_array($data)) {
 					return $data;
 				}
-			} catch (PDOException $e) {
+			} catch (\PDOException $e) {
 				exit($e->getMessage);
 			}
 		}
@@ -63,13 +63,14 @@
 			$array_keys = array_keys($params);
 			$columns = '';
 			foreach ($array_keys as $key) {
-				// code...
 				$columns .= $key . ' = ?, ';
 			}
 			$columns = rtrim($columns, ', ');
 			$array_values = array_values($params);
 
-			$sql = "UPDATE users SET $columns WHERE user_id = '" . $id . "'";
+			$array_values = array_merge($array_values, [$id]);
+
+			$sql = "UPDATE users SET $columns WHERE user_id = ?";
 			try {
 				$data = run($this->db, $sql, $array_values);
 				return $data;
@@ -78,7 +79,15 @@
 			}
 		}
 
-		public function delete() {}
+		public function delete($id) {
+			$sql = "DELETE FROM users WHERE user_id = ?";
+			try {
+				$data = run($this->db, $sql, [$id]);
+				return $data;
+			} catch (\PDOException $e) {
+				exit($e->getMessage());
+			}
+		}
 	
 	}
 	

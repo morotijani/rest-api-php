@@ -12,6 +12,11 @@
 	$userId = NULL;
 	$requestMethod = $_SERVER["REQUEST_METHOD"];
 
+	if (! authenticate()) {
+		header("HTTP/1.1 401 Unauthorized");
+		exit('Unauthorized!');
+	}
+
 	// $app = new APP;
 	$controller = new DataController($dbConnection, $requestMethod, $userId);
  	if (isset($_GET['url'])) {
@@ -24,4 +29,29 @@
 
 	 	$result = $controller->result;
 	 	echo $result;
+ 	}
+
+ 	function authenticate() {
+ 		try {
+ 			switch (true) {
+ 				case array_ey_exists('HTTP_AUTHORIZATION', $_SERVER):
+ 					$authHeader = $_SERVER['HTTP_AUTHORIZATION'];
+ 					break;
+ 				case array_key_exists('Authorization', $_SERVER): 
+                    $authHeader = $_SERVER['Authorization'];
+                    break;
+ 				default:
+ 					// code...
+ 					$authHeader = NULL;
+ 					break;
+ 			}
+
+ 			preg_match('/Brearer\s(\S+)/', $authHeader, $matches);
+ 			if (!isset($matches[1])) {
+ 				throw new \Exception('No Bearer Token!');
+ 			}
+ 			$jwtVerifier = 
+ 		} catch (Exception $e) {
+ 			
+ 		}
  	}

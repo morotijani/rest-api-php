@@ -48,7 +48,7 @@
 			switch ($this->requestMethod) {
 
 				case 'GET':
-					if (isset($params)) {
+					if ($params) {
 						$id = (isset($params[0]) ? $params[0] : NULL);
 						$response = $this->getUser($id);
 					} else {
@@ -65,7 +65,10 @@
 					}
 					break;
 				case 'DELETE':
-					$response = $this->deleteUser();
+					if (isset($params)) {
+						$id = (isset($params[0]) ? $params[0] : NULL);
+						$response = $this->deleteUser($id);
+					}
 					break;
 				default:
 					$response = $this->notFoundResponse();
@@ -81,7 +84,7 @@
 		private function getAllUsers() {
 			$result = $this->dataGateway->findAll();
 			if (! $result) {
-				return '{"status": "404", "message" : "No data found!"}';
+				return $this->notFoundResponse();
 			}
 			$response['status_code_header'] = 'HTTP/1.1 200 OK';
 			$response['body'] = json_encode($result);
@@ -108,7 +111,6 @@
 			
 			$insert = $this->dataGateway->insert($params);
 			if ($insert) {
-				// code...
 				$response['status_code_header'] = 'HTTP/1.1 201 Created';
 				$response['body'] = json_encode([
 					'status' => 'success',
@@ -138,11 +140,32 @@
 			}
 			$update = $this->dataGateway->update($id, $params);
 			if ($update) {
-				// code...
 				$response['status_code_header'] = 'HTTP/1.1 200 OK';
 				$response['body'] = json_encode([
 					'status' => 'success',
 					'message' => 'Account updated!'
+				]);
+			} else {
+				$response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
+				$response['body'] = json_encode([
+					'status' => 'error',
+					'message' => 'Something went wrong!'
+				]);
+			}
+			return $response;
+		}
+
+		private function deleteUser($id) {
+			$result = $this->dataGateway->find($id);
+			if (! is_array($result)) {
+				return $this->notFoundResponse();
+			}
+			$delete = $this->dataGateway->delete($id);
+			if ($delete) {
+				$response['status_code_header'] = 'HTTP/1.1 200 OK';
+				$response['body'] = json_encode([
+					'status' => 'success',
+					'message' => 'Account deleted!'
 				]);
 			} else {
 				$response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
@@ -180,7 +203,6 @@
 				}
 
 				if (empty($params['user_email']) || $params['user_email'] == '') {
-					// code...
 					$response['body'] = json_encode([
 						'status' => 'error',
 						'message' => 'Email is required!'
@@ -192,13 +214,11 @@
 			}
 
 			if (! isset($params['user_fullname'])) {
-				// code...
 				return $this->unprocessableEntityResponse();
 			}
-			
+
 			if (!$id) {
 				if (! isset($params['user_password'])) {
-					// code...
 					return $this->unprocessableEntityResponse();
 				}
 			}
@@ -219,7 +239,7 @@
 			$response['status_code_header'] = "HTTP/1.1 404 Not Found";
 			$response['body'] = json_encode([
 				'status' => 'error',
-				'message' => 'Not found!',
+				'message' => 'No data found!',
 			]);
 
 			return $response;

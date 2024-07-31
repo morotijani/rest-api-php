@@ -19,7 +19,6 @@
 			if ($check) {
 				$response = $check;
 				$data = $statement->fetchAll(PDO::FETCH_OBJ); // fetch objects
-
 				if ($res == 'count') {
 					$response = $statement->rowCount();
 				} else if ($res == 'lastinsertid') {
@@ -27,6 +26,7 @@
 				} else {
 					if (is_array($data) && count($data) > 0) {
 						$response = $data;
+						//dnd($response);
 					}
 				}
 				
