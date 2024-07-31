@@ -9,17 +9,18 @@
 
 	$user = new UserGateway($dbConnection);
 
+	// contains detailed user information
 	$payload = [
 		"sub" => $user['id'],
 		"name" => $user["name"],
-		"exp" => time() + 20
+		"exp" => time() + 20 // expiration is shorter (20 seconds) for security reasons
 	];
 
 	$JwtController = new Jwt($_ENV["SECRET_KEY"]);
 
 	$access_token = $JwtController->encode($payload);
 
-	$referesh_token_expiry = time() + 432000;
+	$referesh_token_expiry = time() + 432000; // expiration (5 days) to allow for longer-lasting authentication without needing frequent logins
 
 	$refresh_token = $JwtController->encode([
 		"sub" => $user["id"],

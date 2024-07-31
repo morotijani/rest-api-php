@@ -12,28 +12,26 @@
 	function run($conn, $query, $var = [], $res = null) {
 		$statement = $conn->prepare($query);
 		if ($statement) {
-			// code...
 			$check = $statement->execute($var);
 
 			if ($check) {
-				$response = $check;
+				//$response = $check;
 				$data = $statement->fetchAll(PDO::FETCH_OBJ); // fetch objects
-				if ($res == 'count') {
-					$response = $statement->rowCount();
-				} else if ($res == 'lastinsertid') {
-					$response = $conn->lastInserId();
-				} else {
-					if (is_array($data) && count($data) > 0) {
-						$response = $data;
-					}
-				}
 				
+				if (is_array($data) && count($data) > 0) {
+					$response = $data;
+					
+					if ($res == 'count') {
+						$response = $statement->rowCount();
+					} else if ($res == 'lastinsertid') {
+						$response = $conn->lastInserId();
+					}
+					return $response;
+				}				
 			}
-			return $response;
 		}
 
 		return false;
-
 	}
 
 	// Make Date Readable

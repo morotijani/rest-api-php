@@ -21,15 +21,6 @@
 
 	// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMzQ1IiwibmFtZSI6ImFkbWluIn0.xbLM0qm331YhqpWD0amSnNi2lUygNlyvqWqBJPpMfjM
 
-	// $payload = [
-	// 	'id' => "12345",
-	// 	"name" => "admin"
-	// ];
-
-	// $JwtController = new Jwt($_ENV["SECRET_KEY"]);
-	// $token = $JwtController->encode($payload);
-
-	// echo json_encode(["token" => $token]);
 
 	$controller = new DataController($dbConnection, $requestMethod, $userId);
  	if (isset($_GET['url'])) {
@@ -43,4 +34,3 @@
 	 	$result = $controller->result;
 	 	echo $result;
  	}
- 	

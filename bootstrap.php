@@ -9,4 +9,3 @@
 	$dotenv->load();
 
 	$dbConnection = (new DatabaseConnector())->getConnection();
-

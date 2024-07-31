@@ -6,6 +6,8 @@ RewriteCond %{REQUEST_FILENAME} !-f
 #if find existing directory just retrieve it as it is.
 RewriteCond %{REQUEST_FILENAME} !-d
 
+RewriteCond %{REQUEST_FILENAME} !-l
+
 #get the query string and display it as this.
 RewriteRule ^(.*)$ index.php?url=$1 [L,QSA]
 
