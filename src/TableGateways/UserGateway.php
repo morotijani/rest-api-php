@@ -28,5 +28,4 @@
 			$statement = run($this->conn, $sql, [$username]);
 			return $statement;
 		}
-
 	}
