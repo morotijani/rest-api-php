@@ -1,6 +1,8 @@
 <?php 
 	namespace Src;
 
+	use Src\InvalidSignatureException;
+
 	class Jwt {
 
     public function __construct(private string $key) {
@@ -23,8 +25,6 @@
         return $header . "." . $payload . "." . $signature;
     }
 
-
-   
     public function decode(string $token): array {
         if (
             preg_match(
@@ -33,8 +33,7 @@
                 $matches
             ) !== 1
         ) {
-
-            throw new InvalidArgumentException("invalid token format");
+            throw new InvalidArgumentException("Invalid token format!");
         }
 
         $signature = hash_hmac(
@@ -46,13 +45,18 @@
 
         $signature_from_token = $this->base64URLDecode($matches["signature"]);
 
-        if (!hash_equals($signature, $signature_from_token)) {
+        if ( ! hash_equals($signature, $signature_from_token)) {
 
             // throw new Exception("signature doesn't match");
             throw new InvalidSignatureException;
         }
 
         $payload = json_decode($this->base64URLDecode($matches["payload"]), true);
+
+        if ($payload["exp"] < time()) {
+        	// code...
+        	throw new TokenExpiredException;
+        }
 
         return $payload;
     }
