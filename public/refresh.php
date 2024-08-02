@@ -1,9 +1,9 @@
 <?php
-	declare(strict_types=1);
+	declare(strict_types = 1);
 
 	require "../bootstrap.php";
 
-	use Src\TableGateways\UserGateway;
+	use Src\TableGateways\ApiUserGateway;
 	use Src\Jwt;
 	use Src\TableGateways\RefreshTokenGateway;
 
@@ -56,7 +56,7 @@
 	    exit;
 	}
 	                         
-	$user_gateway = new UserGateway($dbConnection);
+	$user_gateway = new ApiUserGateway($dbConnection);
 	$user = $user_gateway->getByID($user_id);
 
 	if ($user === false) {

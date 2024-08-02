@@ -1,7 +1,7 @@
 <?php
 	require "../bootstrap.php";
 
-	use Src\TableGateways\UserGateway;
+	use Src\TableGateways\ApiUserGateway;
 	use Src\TableGateways\RefreshTokenGateway;
 
 	if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -45,7 +45,7 @@
 		exit();
 	}
 
-	$user_gateway = new UserGateway($dbConnection);
+	$user_gateway = new ApiUserGateway($dbConnection);
 
 	$user = $user_gateway->getByUsername($data['username']);
 

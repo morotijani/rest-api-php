@@ -69,6 +69,7 @@
             // 	"message" => "Token expired!"
             // ]);
         }
+
         return $payload;
     }
 

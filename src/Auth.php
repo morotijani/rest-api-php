@@ -1,10 +1,10 @@
 <?php 
 	namespace Src;
 
-	use Src\TableGateways\UserGateway;
+	use Src\TableGateways\ApiUserGateway;
 
 	class Auth {
-		public function __construct(private UserGateway $user_gateway, private Jwt $JwtCtrl) {
+		public function __construct(private ApiUserGateway $user_gateway, private Jwt $JwtCtrl) {
 	    
 	    }
 

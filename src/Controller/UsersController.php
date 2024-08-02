@@ -1,58 +1,36 @@
 <?php
 	namespace Src\Controller;
 
-	use Src\TableGateways\DataGateway;
+	use Src\TableGateways\UsersGateway;
 
-	class DataController {
+	class UsersController {
 		private $db;
 		private $requestMethod;
-		private $dataId;
 		public $result = "{}";
 
-    	private $dataGateway;
+    	private $userGateway;
 
-		public function __construct($db, $requestMethod, $dataId) {
+		public function __construct($db, $requestMethod) {
 
 			$this->db = $db;
 			$this->requestMethod = $requestMethod;
-			$this->dataId = $dataId;
-
-        	$this->dataGateway = new DataGateway($db);
-
-			if (isset($_GET['url'])) {
-				$rawUrl = $_GET['url'];
-				$URL = explode("/", trim($rawUrl, '/')); // trim the url with any last forward slash
-				$table = $URL[0]; // grab the table name from the get variable
-				unset($URL[0]); // and unset the key 
-				$params = array_values($URL); // reset the remaing urls values keys starting from 0
-
-				if (is_callable([$this, $table])) {
-			 		$this->result = $this->$table($params);
-			 	}
-			} else {
-				$this->index();
-			}
-
+        	$this->userGateway = new UsersGateway($db);
 		}
 
-		// load index page
-		private function index() {
-			require ("home.php");
-		}
-
-
-		public function processRequest() {
-		}
-
-		private function users($params = []) {
+		public function processRequest($params) {
+			$page = ((isset($params[0]) && $params[0] == 'page') && isset($params[1]) && !empty($params[1]) ? (int)$params[1] : '');
 			switch ($this->requestMethod) {
 
 				case 'GET':
 					if ($params) {
-						$id = (isset($params[0]) ? $params[0] : NULL);
-						$response = $this->getUser($id);
+						if ($params[0] == 'page') {
+							$response = $this->getAllUsers($page);
+						} else {
+							$id = (isset($params[0]) ? $params[0] : NULL);
+							$response = $this->getUser($id);
+						}
 					} else {
-						$response = $this->getAllUsers();
+						$response = $this->getAllUsers($page);
 					}
 					break;
 				case 'POST':
@@ -74,15 +52,15 @@
 					$response = $this->notFoundResponse();
 					break;
 			}
-
+			
 			header($response['status_code_header']);
 			if ($response['body']) {
-				return $response['body'];
+				echo $response['body'];
 			}
 		}
 
-		private function getAllUsers() {
-			$result = $this->dataGateway->findAll();
+		private function getAllUsers($page) {
+			$result = $this->userGateway->findAll($page);
 			if (! $result) {
 				return $this->notFoundResponse();
 			}
@@ -92,7 +70,7 @@
 		}
 
 		private function getUser($id) {
-			$result = $this->dataGateway->find($id);
+			$result = $this->userGateway->find($id);
 			if (! $result) {
 				return $this->notFoundResponse();
 			}
@@ -109,7 +87,7 @@
 				return $validation;
 			}
 			
-			$this->dataGateway->insert($params);
+			$this->userGateway->insert($params);
 			
 			$response['status_code_header'] = 'HTTP/1.1 201 Created';
 			$response['body'] = json_encode([
@@ -122,7 +100,7 @@
 		}
 
 		private function updateUserFormRequest($id) {
-			$result = $this->dataGateway->find($id);
+			$result = $this->userGateway->find($id);
 			if (! is_array($result)) {
 				return $this->notFoundResponse();
 			}
@@ -132,7 +110,7 @@
 			if (!$validationBody) {
 				return $validation;
 			}
-			$this->dataGateway->update($id, $params);
+			$this->userGateway->update($id, $params);
 
 			$response['status_code_header'] = 'HTTP/1.1 200 OK';
 			$response['body'] = json_encode([
@@ -144,24 +122,18 @@
 		}
 
 		private function deleteUser($id) {
-			$result = $this->dataGateway->find($id);
+			$result = $this->userGateway->find($id);
 			if (! is_array($result)) {
 				return $this->notFoundResponse();
 			}
-			$delete = $this->dataGateway->delete($id);
-			if ($delete) {
-				$response['status_code_header'] = 'HTTP/1.1 200 OK';
-				$response['body'] = json_encode([
-					'status' => 'success',
-					'message' => 'Account deleted!'
-				]);
-			} else {
-				$response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
-				$response['body'] = json_encode([
-					'status' => 'error',
-					'message' => 'Something went wrong!'
-				]);
-			}
+
+			$this->userGateway->delete($id);
+			
+			$response['status_code_header'] = 'HTTP/1.1 200 OK';
+			$response['body'] = json_encode([
+				'status' => 'success',
+				'message' => 'Account deleted!'
+			]);
 			return $response;
 		}
 
