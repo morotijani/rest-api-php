@@ -19,16 +19,20 @@
 
 		SECRET_KEY=
 
+		the secret key used to sign the token should be kept hidden and never exposed to public information, as it can compromise the security of the system.
+
 		Provide database details in the .env file
 
 		The implementation of access tokens and refresh tokens enhances security and user experience. Access tokens provide immediate access to resources and have a short lifespan(20 secs), promoting security by limiting their usability in case of unauthorized access. On the other hand, refresh tokens (5 days) have a longer lifespan and enable users to obtain new access tokens without repeated authentication
 
-		Login to get token keys
+		Login with user api username and password to generate token key
 
 		use refresh tokens as your Authorization Bearer Token
 
 		Token, expires in every 5 days
-		if token expires
+		
+
+		When a user logs in via the login endpoint, two crucial tokens are provided: an access token and a refresh token. The access token grants immediate access to resources, while the refresh token serves as a long-term authorization tool. If the access token expires, the refresh token is then passed to the refresh endpoint. This action triggers the generation of a new access token, which, in turn, creates a fresh refresh token. This process forms a robust and secure mechanism ensuring continuous access to resources while maintaining high levels of security and user convenience
 
 
 

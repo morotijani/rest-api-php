@@ -1,6 +1,7 @@
 <?php
 
 	use Src\Jwt;
+	
 	// contains detailed user information
 	$payload = [
 		"sub" => $user[0]->id,
