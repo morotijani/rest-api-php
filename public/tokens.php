@@ -12,7 +12,7 @@
 
 	$access_token = $JwtController->encode($payload);
 
-	$refresh_token_expiry = time() + 30;// 432000; // expiration (5 days) to allow for longer-lasting authentication without needing frequent logins
+	$refresh_token_expiry = time() + 432000; // expiration (5 days) to allow for longer-lasting authentication without needing frequent logins
 
 	$refresh_token = $JwtController->encode([
 		"sub" => $user[0]->id,

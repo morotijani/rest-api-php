@@ -63,11 +63,11 @@
 
         $payload = json_decode($this->base64URLDecode($matches["payload"]), true);
         if ($payload["exp"] < time()) {
-        	//throw new TokenExpiredException;;
-        	echo json_encode([
-            	"status" => "error",
-            	"message" => "Token expired!"
-            ]);
+        	// throw new TokenExpiredException;;
+        	// echo json_encode([
+            // 	"status" => "error",
+            // 	"message" => "Token expired!"
+            // ]);
         }
         return $payload;
     }
