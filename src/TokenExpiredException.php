@@ -1,6 +1,6 @@
-<?php 
+<?php
 
-	namespace Src;
+	namespace Src
 
 	class TokenExpiredException extends Exception {
 

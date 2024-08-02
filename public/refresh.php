@@ -1,10 +1,11 @@
 <?php
-	// declare(strict_types=1);
+	declare(strict_types=1);
+
 	require "../bootstrap.php";
 
 	use Src\TableGateways\UserGateway;
 	use Src\Jwt;
-	use Src\RefreshTokenGateway;
+	use Src\TableGateways\RefreshTokenGateway;
 
 	if ($_SERVER["REQUEST_METHOD"] !== "POST") {
 	    

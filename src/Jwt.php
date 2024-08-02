@@ -2,6 +2,7 @@
 	namespace Src;
 
 	use Src\InvalidSignatureException;
+	use Src\TokenExpiredException;
 
 	class Jwt {
 
@@ -33,7 +34,12 @@
                 $matches
             ) !== 1
         ) {
-            throw new InvalidArgumentException("Invalid token format!");
+            // throw new InvalidArgumentException("Invalid token format!");
+            echo json_encode([
+            	"status" => "error",
+            	"messgae" => "Invalid token format!"
+            ]);
+            exit;
         }
 
         $signature = hash_hmac(
@@ -46,18 +52,23 @@
         $signature_from_token = $this->base64URLDecode($matches["signature"]);
 
         if ( ! hash_equals($signature, $signature_from_token)) {
-
             // throw new Exception("signature doesn't match");
-            throw new InvalidSignatureException;
+            // throw new InvalidSignatureException;
+            echo json_encode([
+            	"status" => "error",
+            	"message" => "Signature doesn't match!"
+            ]);
+            exit();
         }
 
         $payload = json_decode($this->base64URLDecode($matches["payload"]), true);
-
         if ($payload["exp"] < time()) {
-        	// code...
-        	throw new TokenExpiredException;
+        	//throw new TokenExpiredException;;
+        	echo json_encode([
+            	"status" => "error",
+            	"message" => "Token expired!"
+            ]);
         }
-
         return $payload;
     }
 

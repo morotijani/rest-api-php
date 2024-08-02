@@ -109,20 +109,14 @@
 				return $validation;
 			}
 			
-			$insert = $this->dataGateway->insert($params);
-			if ($insert) {
-				$response['status_code_header'] = 'HTTP/1.1 201 Created';
-				$response['body'] = json_encode([
-					'status' => 'success',
-					'message' => 'Account created!'
-				]);
-			} else {
-				$response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
-				$response['body'] = json_encode([
-					'status' => 'error',
-					'message' => 'Something went wrong!'
-				]);
-			}
+			$this->dataGateway->insert($params);
+			
+			$response['status_code_header'] = 'HTTP/1.1 201 Created';
+			$response['body'] = json_encode([
+				'status' => 'success',
+				'message' => 'Account created!'
+			]);
+			
 			return $response;
 			
 		}
@@ -138,20 +132,14 @@
 			if (!$validationBody) {
 				return $validation;
 			}
-			$update = $this->dataGateway->update($id, $params);
-			if ($update) {
-				$response['status_code_header'] = 'HTTP/1.1 200 OK';
-				$response['body'] = json_encode([
-					'status' => 'success',
-					'message' => 'Account updated!'
-				]);
-			} else {
-				$response['status_code_header'] = 'HTTP/1.1 422 Unprocessable Entity';
-				$response['body'] = json_encode([
-					'status' => 'error',
-					'message' => 'Something went wrong!'
-				]);
-			}
+			$this->dataGateway->update($id, $params);
+
+			$response['status_code_header'] = 'HTTP/1.1 200 OK';
+			$response['body'] = json_encode([
+				'status' => 'success',
+				'message' => 'Account updated!'
+			]);
+
 			return $response;
 		}
 
@@ -183,11 +171,15 @@
 			if (isset($params['user_email'])) {
 
 				// check if email exist
-				$data = run($this->db, "SELECT * FROM users WHERE user_email = ? LIMIT 1", [$params['user_email']], 'count');
 				if ($id) {
-					$data = run($this->db, "SELECT * FROM users WHERE user_email = ? AND user_id != ? ", [$params['user_email'], $id], 'count');
+					$query = "SELECT * FROM users WHERE user_email = ? AND user_id != ?";
+					$query_params = [$params['user_email'], $id];
+				} else {
+					$query = "SELECT * FROM users WHERE user_email = ? LIMIT 1";
+					$query_params = [$params['user_email']];
 				}
-				if ($data > 0) {
+				$data = run($this->db, $query, $query_params);
+				if (is_array($data)) {
 					$response['body'] = json_encode([
 						'status' => 'error',
 						'message' => 'Email, already exist!'

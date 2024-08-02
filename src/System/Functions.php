@@ -15,28 +15,29 @@
 			$check = $statement->execute($var);
 
 			if ($check) {
-				//$response = $check;
+				$response = $check;
 				$data = $statement->fetchAll(PDO::FETCH_OBJ); // fetch objects
-				
 				if (is_array($data) && count($data) > 0) {
 					$response = $data;
-					
+
 					if ($res == 'count') {
 						$response = $statement->rowCount();
 					} else if ($res == 'lastinsertid') {
 						$response = $conn->lastInserId();
 					}
-					
-					return $response;
-				}				
+
+				} else {
+					return false;
+				}			
 			}
+			return $response;
 		}
 
 		return false;
 	}
 
 	// Make Date Readable
-	function pretty_date($date){
+	function pretty_date($date) {
 		return date("M d, Y h:i A", strtotime($date));
 	}
 
@@ -466,9 +467,6 @@
 	        return $filesize." Bytes";
 	    }
 	}
-
-
-
 
 	function yearDropdown($startYear, $endYear, $id="year", $class) {           
 	    //echo each year as an option     

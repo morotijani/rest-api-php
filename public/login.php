@@ -2,7 +2,7 @@
 	require "../bootstrap.php";
 
 	use Src\TableGateways\UserGateway;
-	use Src\RefreshTokenGateway;
+	use Src\TableGateways\RefreshTokenGateway;
 
 	if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 		http_response_code(405);
@@ -55,7 +55,6 @@
 	}
 
 	if (!password_verify($data['password'], $user[0]->password_hash)) {
-		// code...
 		http_response_code(401);
 		echo json_encode([
 			"status" => "error",

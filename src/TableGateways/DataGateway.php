@@ -67,7 +67,6 @@
 			}
 			$columns = rtrim($columns, ', ');
 			$array_values = array_values($params);
-
 			$array_values = array_merge($array_values, [$id]);
 
 			$sql = "UPDATE users SET $columns WHERE user_id = ?";

@@ -1,5 +1,5 @@
 <?php 
-	namespace Src;
+	namespace Src\TableGateways;
 
 	class RefreshTokenGateway {
 
@@ -22,8 +22,9 @@
 
 		public function delete(string $token): int {
 			$hash = hash_hmac("sha256", $token, $this->key);
+
 			$sql = "DELETE FROM refresh_token WHERE token_hash = ?";
-			$sql = run($this->db, $sql, [$hash], 'count');
+			$sql = run($this->db, $sql, [$hash]);
 
 			return $sql;
 		}

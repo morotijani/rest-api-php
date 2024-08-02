@@ -11,16 +11,12 @@
 
 	$JwtCtrl = new Jwt($_ENV["SECRET_KEY"]);
 	$auth = new Auth($user, $JwtCtrl);
-
 	if (! $auth->authenticateJWTToken()) {
 		exit();
 	}
 
 	$userId = NULL;
 	$requestMethod = $_SERVER["REQUEST_METHOD"];
-
-	// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjEyMzQ1IiwibmFtZSI6ImFkbWluIn0.xbLM0qm331YhqpWD0amSnNi2lUygNlyvqWqBJPpMfjM
-
 
 	$controller = new DataController($dbConnection, $requestMethod, $userId);
  	if (isset($_GET['url'])) {
