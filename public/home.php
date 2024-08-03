@@ -181,7 +181,8 @@
     		<img src="../assets/logo/truss-1.png" class="bi" width="100" height="100">
     		<h1 class="text-body-emphasis">Truss</h1>
 		    <p class="col-lg-8 mx-auto fs-5 text-muted">
-		      	This API is a very simple but robust and highly secured with authentication mechanism that significantly enhances data protection and user authentication built with <code>REST API in PHP</code>.
+		      	Built with a <code>REST API in PHP</code>, this API is very simple, yet incredibly reliable and safe, with an authentication method that greatly improves data protection and user authentication.
+
 		    </p>
 		</div>
 	</div>
@@ -207,19 +208,23 @@
   	<div class="container py-5">
 
   		<h5 class="fw-bold">API</h5>
-  		<p>REST APIs are the backbone of modern web development. Most web applications these days are developed as single-page applications on the frontend, connected to backend APIs written in various languages. There are many great frameworks that can help you build REST APIs quickly. Laravel/Lumen and Symfony’s API platform are the most often used examples in the PHP ecosystem. They provide great tools to process requests and generate JSON responses with the correct HTTP status codes. They also make it easy to handle common issues like authentication/authorization, request validation, data transformation, pagination, filters, rate throttling, complex endpoints with sub-resources, and API documentation.</p>
+  		<p>
+  			In contemporary web development, REST APIs are essential. These days, the majority of online applications are created as front-end single-page apps that are linked to back-end APIs that are built in other languages. You may easily create REST APIs with the aid of numerous excellent frameworks. Two of the most widely used examples in the PHP environment are Laravel/Lumen and the Symfony API platform. They offer excellent resources for handling requests and producing JSON responses that contain the appropriate HTTP status codes. Additionally, they simplify the management of typical problems such as request validation, data transformation, pagination, filters, rate throttling, complex endpoints with sub-resources, authentication/authorization, and API documentation.
+  		</p>
 
 
   		<h5 class="fw-bold">Requests</h5>
   		<p>
-  			When referring to our project, the URL would typically be structured as follows: http://localhost/rest-api-php/public . However, depending on the project's name, this URL might vary accordingly. Nonetheless, the base URL remains consistent: http://localhost/rest-api-php/public .
+  			The URL for our project would normally look something like this: http://localhost/rest-api-php/public. However, this URL may change based on the name of the project. However, the root URL, http://localhost/rest-api-php/public, doesn't change.
   			<br>
-  			Thanks to our implementation of URL rewriting in the .htaccess file, additional prefixes such as index.php or .php are unnecessary when accessing our URLs. 
+  			The.htaccess file we use to implement URL rewriting eliminates the need for extra prefixes like index.php or.php when accessing our URLs.  
   		</p>
 
 
   		<h5 class="fw-bold">Database</h5>
-  		<p>We set up our database connection to ensure smooth communication between our API endpoints and the database. All the required configurations are included within the bootstrap.php file for convenience. By importing this file into our index.php, managing configurations and imports becomes simpler.</p>
+  		<p>
+  			We configure our database connection to make sure that our API endpoints and the database communicate with each other. All of the necessary configurations are contained in the bootstrap.php file for ease of use. By importing this file into our index.php, it becomes easier to manage imports and configurations.
+  		</p>
 
 
   		<h5 class="fw-bold">Register</h5>
