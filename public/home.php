@@ -25,7 +25,7 @@
 
     <style>
     	* {
-    		font-family: "Libre Baskerville", Georgia, serif;
+    		font-family: monospace;
     	}
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -178,10 +178,11 @@
 
 	<div class="container-fluid">
   		<div class="text-center bg-body-tertiary p-1 rounded-3">
-    		<svg class="bi" style="color: var(--bs-indigo);" width="100" height="100"><use xlink:href="#bootstrap"/></svg>
-    		<h1 class="text-body-emphasis">Jumbotron with icon</h1>
+    		<img src="../assets/logo/truss-1.png" class="bi" width="100" height="100">
+    		<h1 class="text-body-emphasis">Truss</h1>
+    		<h3 class="">Documentation</h3>
 		    <p class="col-lg-8 mx-auto fs-5 text-muted">
-		      	This is a custom jumbotron featuring an SVG image at the top, some longer text that wraps early thanks to a responsive <code>.col-*</code> class, and a customized call to action.
+		      	This API is a very simple but robust and highly secured with authentication mechanism that significantly enhances data protection and user authentication built with <code>REST API in PHP</code>.
 		    </p>
 		</div>
 	</div>
@@ -189,19 +190,102 @@
 	<div class="container border-bottom">
     	<header class="d-flex justify-content-center py-3">
 	      	<ul class="nav nav-pills">
-	       		<li class="nav-item"><a href="#" class="nav-link">Home</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link">API</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link">Tokens</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link">Pages</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link">About</a></li>
+	       		<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Home</a></li>
+	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">API</a></li>
+	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Requests</a></li>
+	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Database</a></li>
+	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Register</a></li>
+	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Login</a></li>
+	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">URLS</a></li>
+	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Tokens</a></li>
+	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Security</a></li>
+	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Pagination</a></li>
+	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Usage</a></li>
 	      	</ul>
     	</header>
   	</div>
 
+  	<div class="container py-5">
 
-  	<center>
-		<h1>My API</h1>
-		<h3>Documentation</h3>
+  		<h5 class="fw-bold">API</h5>
+  		<p>REST APIs are the backbone of modern web development. Most web applications these days are developed as single-page applications on the frontend, connected to backend APIs written in various languages. There are many great frameworks that can help you build REST APIs quickly. Laravel/Lumen and Symfony’s API platform are the most often used examples in the PHP ecosystem. They provide great tools to process requests and generate JSON responses with the correct HTTP status codes. They also make it easy to handle common issues like authentication/authorization, request validation, data transformation, pagination, filters, rate throttling, complex endpoints with sub-resources, and API documentation.</p>
+
+
+  		<h5 class="fw-bold">Requests</h5>
+  		<p>
+  			When referring to our project, the URL would typically be structured as follows: http://localhost/rest-api-php/public . However, depending on the project's name, this URL might vary accordingly. Nonetheless, the base URL remains consistent: http://localhost/rest-api-php/public .
+  			<br>
+  			Thanks to our implementation of URL rewriting in the .htaccess file, additional prefixes such as index.php or .php are unnecessary when accessing our URLs. 
+  		</p>
+
+
+  		<h5 class="fw-bold">Database</h5>
+  		<p>We set up our database connection to ensure smooth communication between our API endpoints and the database. All the required configurations are included within the bootstrap.php file for convenience. By importing this file into our index.php, managing configurations and imports becomes simpler.</p>
+
+
+  		<h5 class="fw-bold">Register</h5>
+  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+  		<h5 class="fw-bold">Login</h5>
+  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+  		<h5 class="fw-bold">URL</h5>
+  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+  		<h5 class="fw-bold">Token</h5>
+  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+  		<h5 class="fw-bold">Security</h5>
+  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+  		<h5 class="fw-bold">Pagination</h5>
+  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
+  		<h5 class="fw-bold">Usage</h5>
+  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+
 
 		<p>// first item in the url is always the table name</p>
 
@@ -239,16 +323,16 @@
 
 
 
-	</center>
+	</div>
 
 	<div class="container">
-  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
-    <div class="col-md-4 d-flex align-items-center">
-      <a href="/" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
-        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"/></svg>
-      </a>
-      <span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 Company, Inc</span>
-    </div>
+  		<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    		<div class="col-md-4 d-flex align-items-center">
+	      		<a href="home" class="mb-3 me-2 mb-md-0 text-body-secondary text-decoration-none lh-1">
+	        		<img src="../assets/logo/truss-2.png" class="bi" width="30" height="24"><use xlink:href="#bootstrap"/>
+	      		</a>
+	      		<span class="mb-3 mb-md-0 text-body-secondary">&copy; 2024 Truss (API Development), Inc</span>
+	    	</div>
 
     <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
       <li class="ms-3"><a class="text-body-secondary" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"/></svg></a></li>
