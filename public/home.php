@@ -199,7 +199,7 @@
 	        	<li class="nav-item"><a href="#login" class="nav-link text-body-secondary">Login</a></li>
 	        	<li class="nav-item"><a href="#urls" class="nav-link text-body-secondary">URLS</a></li>
 	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Pagination</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Security</a></li>
+	        	<li class="nav-item"><a href="#security" class="nav-link text-body-secondary">Security</a></li>
 	        	<li class="nav-item"><a href="#usage" class="nav-link text-body-secondary">Usage</a></li>
 	      	</ul>
     	</header>
@@ -230,6 +230,8 @@
   			We will use MySQL to power our simple API
   			<br>
   			We configure our database connection with database name "api.sample" to make sure that our API endpoints and the database communicate with each other. All of the necessary configurations are contained in the bootstrap.php file for ease of use. By importing this file into our index.php, it becomes easier to manage imports and configurations.
+  			<br>
+  			Provision of database details is to be kept in the <code>.env</code> file.
   		</p>
 
   		<a href="javascript;" name="token"></a>
@@ -269,32 +271,9 @@
 			<br>https://generate-random.org/encryption-key-generator?source=post_page-----ebf5693b931a--------------------------------
 			<br>
 			<br>
-			SECRET_KEY=
+			After secret key generation, direct to the .env file and paste the signature code in <code>SECRET_KEY</code>
 			<br>
-			<br>
-			the secret key used to sign the token should be kept hidden and never exposed to public information, as it can compromise the security of the system.
-			<br>
-			<br>
-			Provide database details in the .env file
-			<br>
-			<br>
-			The implementation of access tokens and refresh tokens enhances security and user experience. Access tokens provide immediate access to resources and have a short lifespan(20 secs), promoting security by limiting their usability in case of unauthorized access. On the other hand, refresh tokens (5 days) have a longer lifespan and enable users to obtain new access tokens without repeated authentication
-			<br>
-			<br>
-			Login with user api username and password to generate token key
-			<br>
-			<br>
-			use refresh tokens as your Authorization Bearer Token
-			<br>
-			<br>
-			Token, expires in every 5 days
-			
-			<br>
-			<br><br>
-			<br>
-			When a user logs in via the login endpoint, two crucial tokens are provided: an access token and a refresh token. The access token grants immediate access to resources, while the refresh token serves as a long-term authorization tool. If the access token expires, the refresh token is then passed to the refresh endpoint. This action triggers the generation of a new access token, which, in turn, creates a fresh refresh token. This process forms a robust and secure mechanism ensuring continuous access to resources while maintaining high levels of security and user convenience
-
-
+			The system's security may be jeopardised if the secret key used to sign the token is disclosed to the public. It should always be kept private.
   		</p>
 
   		<a href="javascript:;" name="register"></a>
@@ -330,16 +309,22 @@
   			// first item in the url is always the table name
   		</p>
 
-
-
-
+  		<a href="javascript:;" name="security"></a>
   		<h5 class="fw-bold">Security</h5>
-  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  		<p>
+  			When a user logs in via the login endpoint, two crucial tokens are provided: an access token and a refresh token. The access token grants immediate access to resources, while the refresh token serves as a long-term authorization tool. If the access token expires, the refresh token is then passed to the refresh endpoint. This action triggers the generation of a new access token, which, in turn, creates a fresh refresh token. This process forms a robust and secure mechanism ensuring continuous access to resources while maintaining high levels of security and user convenience\
+  			<br>
+  			The implementation of access tokens and refresh tokens enhances security and user experience. Access tokens provide immediate access to resources and have a short lifespan(20 secs), promoting security by limiting their usability in case of unauthorized access. On the other hand, refresh tokens (5 days) have a longer lifespan and enable users to obtain new access tokens without repeated authentication
+			<br>
+			<br>
+			Login with user api username and password to generate token key
+			<br>
+			<br>
+			use refresh tokens as your Authorization Bearer Token
+			<br>
+			<br>
+			Token, expires in every 5 days
+  		</p>
 
 
   		<h5 class="fw-bold">Pagination</h5>
