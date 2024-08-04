@@ -228,9 +228,11 @@
   		<p>
   			We will use MySQL to power our simple API
   			<br>
-  			We configure our database connection with database name "api.sample" to make sure that our API endpoints and the database communicate with each other. All of the necessary configurations are contained in the bootstrap.php file for ease of use. By importing this file into our index.php, it becomes easier to manage imports and configurations.
+  			We configure our database which already establish a PDO database connection with database name "api.sample" to make sure that our API endpoints and the database communicate with each other. All of the necessary configurations are contained in the bootstrap.php file for ease of use. By importing this file into our index.php, it becomes easier to manage imports and configurations.
   			<br>
   			Provision of database details is to be kept in the <code>.env</code> file.
+  			<br>
+  			Note: Make sure the variables in the <code>.env</code> environment file match your database credentials before using.
   		</p>
 
   		<a href="javascript;" name="token"></a>
@@ -365,7 +367,7 @@
   		<a href="javascript:;" name="security"></a>
   		<h5 class="fw-bold">Security</h5>
   		<p>
-  			When a user logs in via the login endpoint, two crucial tokens are provided: an access token and a refresh token. The access token grants immediate access to resources, while the refresh token serves as a long-term authorization tool. If the access token expires, the refresh token is then passed to the refresh endpoint. This action triggers the generation of a new access token, which, in turn, creates a fresh refresh token. This process forms a robust and secure mechanism ensuring continuous access to resources while maintaining high levels of security and user convenience\
+  			When a user logs in via the login endpoint, two crucial tokens are provided: an "access token" and a "refresh token". The "access token" grants immediate access to resources, while the refresh token serves as a long-term authorization tool. If the access token expires, the refresh token is then passed to the refresh endpoint. This action triggers the generation of a new access token, which, in turn, creates a fresh refresh token. This process forms a robust and secure mechanism ensuring continuous access to resources while maintaining high levels of security and user convenience\
   			<br>
   			The implementation of access tokens and refresh tokens enhances security and user experience. Access tokens provide immediate access to resources and have a short lifespan(20 secs), promoting security by limiting their usability in case of unauthorized access. On the other hand, refresh tokens (5 days) have a longer lifespan and enable users to obtain new access tokens without repeated authentication
 			<br>
@@ -378,8 +380,6 @@
 			<br>
 			Token, expires in every 5 days
   		</p>
-
-
 
   		<a href="javascript:;" name="usage"></a>
   		<h5 class="fw-bold">Usage</h5>
