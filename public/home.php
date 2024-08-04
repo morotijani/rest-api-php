@@ -200,7 +200,7 @@
 	        	<li class="nav-item"><a href="#urls" class="nav-link text-body-secondary">URLS</a></li>
 	        	<li class="nav-item"><a href="#pagination" class="nav-link text-body-secondary">Pagination</a></li>
 	        	<li class="nav-item"><a href="#security" class="nav-link text-body-secondary">Security</a></li>
-	        	<li class="nav-item"><a href="#usage" class="nav-link text-body-secondary">Usage</a></li>
+	        	<li class="nav-item"><a href="#..." class="nav-link text-body-secondary">...</a></li>
 	      	</ul>
     	</header>
   	</div>
@@ -389,19 +389,21 @@
 			Token format checks, appropriate HTTP request method validation, and strict typing enforcement are further essentials for guaranteeing the stability and dependability of token-based authentication systems. By following these procedures, common vulnerabilities including improper token usage, manipulation with tokens, and unauthorised access attempts can be avoided.
 			<br>
 			<br>
-			Login with user api username and password to generate token key
+			Login with user api username and password to generate acces token key
 			<br>
-			<br>
-			use refresh tokens as your Authorization Bearer Token
-			<br>
-			<br>
-			Token, expires in every 5 days
+			Use refresh tokens as your Authorization Bearer Token
   		</p>
 
-  		<a href="javascript:;" name="usage"></a>
+  		<a href="javascript:;" name="..."></a>
   		<h5 class="fw-bold">Usage</h5>
   		<p>
   			The "public/" directory contains PHP files responsible for handling API requests and responses. It includes an .htaccess file for URL rewriting and an index.php file, along with other PHP files for specific functionalities.
+  			<br><br>
+  			Navigate to "public/src/DataController" to use or include all Controllers inside the "public/src/Controller/" directory
+  			<br><br>
+  			All gateways are inside the "public/src/TableGateways/"
+  			<br><br>
+  			All controllers are inside the "public/src/Controller/"
   			<br><br>
 			The "vendor/" directory contains Composer dependencies installed for the project. These dependencies are managed by Composer and should not be modified directly.
 			<br><br>
