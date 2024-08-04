@@ -259,7 +259,7 @@
 			<br><a href="https://generate-random.org/encryption-key-generator?source=post_page-----ebf5693b931a--------------------------------">https://generate-random.org/encryption-key-generator?source=post_page-----ebf5693b931a--------------------------------</a>
 			<br>
 			<br>
-			After secret key generation, direct to the .env file and paste the signature code in <code>SECRET_KEY</code>
+			After secret key generation, direct to the <code>.env</code> file and paste the signature code in <code>SECRET_KEY</code>
 			<br>
 			The system's security may be jeopardised if the secret key used to sign the token is disclosed to the public. It should always be kept private.
   		</p>
@@ -344,7 +344,7 @@
   			To set pagination on list of data, e.g.,
   			<br>
   			<br>
-  			Get all users : <code>http://localhost/rest-api-php/users/1</code> GET
+  			Get all users : <code>http://localhost/rest-api-php/users/{1}</code> GET
   			<br>
   			<br>
   			Note: The next parameter that comes after the "users/" is the page number.
@@ -421,9 +421,8 @@
 		      		</a>
 		      	</li>
 		    </ul>
-  </footer>
-</div>
-
+	  </footer>
+	</div>
 
 	<script src="../assets/js/bootstrap.bundle.min.js"></script>
 </body>
