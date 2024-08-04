@@ -1,6 +1,7 @@
 # rest-api-php
 Build a Simple REST API in PHP
 
+<<<<<<< HEAD
 This repo demonstrates how to create a basic REST API in core PHP and Implement JSON Web Tokens (JWTs).
 
 Prerequisites: PHP, Composer, MySQL, JWTs
@@ -36,4 +37,10 @@ Step 2: Creating the Database
 Step 3: Importing the SQL File api.sample.sql
 
 Step 4: Verifying the Import
+=======
+
+
+
+
+>>>>>>> 93d48d611e130f75175cfcdd9df061edf62ef958
 
