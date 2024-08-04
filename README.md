@@ -30,8 +30,11 @@ composer install
 # Configuration
 
 Step 1: Accessing PHPMyAdmin
+
 Step 2: Creating the Database
+
 Step 3: Importing the SQL File
+
 Step 4: Verifying the Import
 
 
