@@ -325,16 +325,20 @@
   			<code>{"token" : "apiusername"}</code>
   			<br>
   			<br>
-  			Create user : <code>http://localhost/rest-api-php/users/userid</code> POST
+  			Create user : <code>http://localhost/rest-api-php/users</code> POST
   			<br>
   			<code>{"user_fullname":"", "user_email": "", "user_password":""}</code> 
   			<br>
   			<br>
   			Get one user : <code>http://localhost/rest-api-php/users/userid</code> GET
   			<br>
+  			<br>
   			Delete user : <code>http://localhost/rest-api-php/users/userid</code> DELETE
   			<br>
+  			<br>
   			Update user : <code>http://localhost/rest-api-php/users/userid</code> PUT
+  			<br>
+  			<code>{"user_fullname" : "", "user_email" : ""}</code>
   			<br>
   			<br>
   			Note : first item that comes after the "main project url" is always the table name.
