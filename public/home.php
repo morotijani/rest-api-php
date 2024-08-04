@@ -238,6 +238,8 @@
   		<a href="javascript;" name="token"></a>
   		<h5 class="fw-bold">JWTs</h5>
   		<p>
+  			JWT tokens provide a convenient and efficient way to handle authentication and authorization in web applications.
+  			<br>
   			A string with three segments that are connected by a period (.) and base64url encoded makes up a JSON Web Token. 
   			<br>
   			All that is required to create a JSON Web Token is the concatenation of the header, payload, and signature, separated by periods ("."):
@@ -367,9 +369,24 @@
   		<a href="javascript:;" name="security"></a>
   		<h5 class="fw-bold">Security</h5>
   		<p>
-  			When a user logs in via the login endpoint, two crucial tokens are provided: an "access token" and a "refresh token". The "access token" grants immediate access to resources, while the refresh token serves as a long-term authorization tool. If the access token expires, the refresh token is then passed to the refresh endpoint. This action triggers the generation of a new access token, which, in turn, creates a fresh refresh token. This process forms a robust and secure mechanism ensuring continuous access to resources while maintaining high levels of security and user convenience\
+  			By access our API end point at http://localhost/rest-api-php/public/users , we are able to observe multiple alternative results, each of which represents a distinct state or feature of our program. These results could consist of:
+  			<br><br>
+  			Successful Response: The API should provide the required data, such a list of all students, if the authentication procedure is successful and the JWT token is valid.
+  			<br><br>
+			Invalid Token: The API should reply with an error message specifying the problem if the JWT token supplied in the request's Authorisation header is expired, invalid, or incorrectly formed. This guarantees that the protected resources can only be accessed by authorised users.
+			<br><br>
+			Unauthorised Access: The API should return a 401 Unauthorised status code in response to a request that does not contain a JWT token or does not have the required authorisation. This code indicates that access to the requested resource is limited.
+			<br><br>
+			Invalid Endpoint: The API should provide a 404 Not Found status code in response, indicating that the requested resource is not available, if the URL supplied does not correspond to any of the declared endpoints or routes within our application.
+			<br>
+			<br>
+  			Two essential tokens are provided when a user logs in through the login endpoint: a "access token" and a "refresh token." While the refresh token acts as a long-term authorisation tool, the "access token" provides immediate access to resources. The refresh token is then sent to the refresh endpoint in the event that the access token expires. A new refresh token is created as a result of this activity, which also initiates the creation of a new access token. This procedure creates a strong, safe system that guarantees constant resource access while upholding the highest standards of security and user ease.
+  			<br>
   			<br>
   			The implementation of access tokens and refresh tokens enhances security and user experience. Access tokens provide immediate access to resources and have a short lifespan(20 secs), promoting security by limiting their usability in case of unauthorized access. On the other hand, refresh tokens (5 days) have a longer lifespan and enable users to obtain new access tokens without repeated authentication
+			<br>
+			<br>
+			Token format checks, appropriate HTTP request method validation, and strict typing enforcement are further essentials for guaranteeing the stability and dependability of token-based authentication systems. By following these procedures, common vulnerabilities including improper token usage, manipulation with tokens, and unauthorised access attempts can be avoided.
 			<br>
 			<br>
 			Login with user api username and password to generate token key
