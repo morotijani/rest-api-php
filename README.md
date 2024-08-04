@@ -21,8 +21,11 @@ NB: users should ensure that the secret key used in their projects is unique and
 Clone this project using the following commands: 
 
 git clone git@github.com:morotijani/rest-api-php.git
+
 cd rest-api-php
+
 composer install
+
 
 # Configuration
 
