@@ -33,7 +33,7 @@ Step 1: Accessing PHPMyAdmin
 
 Step 2: Creating the Database
 
-Step 3: Importing the SQL File
+Step 3: Importing the SQL File api.sample.sql
 
 Step 4: Verifying the Import
 
