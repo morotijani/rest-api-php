@@ -15,7 +15,8 @@ The .htaccess file in the API folder contains directives for URL rewriting and s
 
 # .env file 
 The .env file in the project contains sensitive information such as database credentials and secret keys.
-NB: users should ensure that the secret key used in their projects is unique and secure.
+
+NB: users should ensure that the SECRET_KEY used in their projects is unique and secure.
 
 # Getting Started
 
@@ -37,5 +38,7 @@ Step 2: Creating the Database
 Step 3: Importing the SQL File api.sample.sql
 
 Step 4: Verifying the Import
+
+Step 5: Fill the details in the .env file.
 
 
