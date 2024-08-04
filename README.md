@@ -1,4 +1,4 @@
-# rest-api-php
+# php rest api
 Build a Simple REST API in PHP
 
 This repo demonstrates how to create a basic REST API in core PHP and Implement JSON Web Tokens (JWTs).
