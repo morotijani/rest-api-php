@@ -191,15 +191,15 @@
     	<header class="d-flex justify-content-center py-3">
 	      	<ul class="nav nav-pills">
 	       		<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Home</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">API</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Requests</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Database</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Register</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Login</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">URLS</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Tokens</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Security</a></li>
+	        	<li class="nav-item"><a href="#api" class="nav-link text-body-secondary">API</a></li>
+	        	<li class="nav-item"><a href="#requests" class="nav-link text-body-secondary">Requests</a></li>
+	        	<li class="nav-item"><a href="#database" class="nav-link text-body-secondary">Database</a></li>
+	        	<li class="nav-item"><a href="#token" class="nav-link text-body-secondary">JWTs</a></li>
+	        	<li class="nav-item"><a href="#register" class="nav-link text-body-secondary">Register</a></li>
+	        	<li class="nav-item"><a href="#login" class="nav-link text-body-secondary">Login</a></li>
+	        	<li class="nav-item"><a href="#urls" class="nav-link text-body-secondary">URLS</a></li>
 	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Pagination</a></li>
+	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Security</a></li>
 	        	<li class="nav-item"><a href="#" class="nav-link text-body-secondary">Usage</a></li>
 	      	</ul>
     	</header>
@@ -207,42 +207,66 @@
 
   	<div class="container py-5">
 
+  		<a href="javascript:;" name="api"></a>
   		<h5 class="fw-bold">API</h5>
   		<p>
   			In contemporary web development, REST APIs are essential. These days, the majority of online applications are created as front-end single-page apps that are linked to back-end APIs that are built in other languages. You may easily create REST APIs with the aid of numerous excellent frameworks. Two of the most widely used examples in the PHP environment are Laravel/Lumen and the Symfony API platform. They offer excellent resources for handling requests and producing JSON responses that contain the appropriate HTTP status codes. Additionally, they simplify the management of typical problems such as request validation, data transformation, pagination, filters, rate throttling, complex endpoints with sub-resources, authentication/authorization, and API documentation.
   		</p>
 
-
+  		<a href="javascript:;" name="requests"></a>
   		<h5 class="fw-bold">Requests</h5>
   		<p>
-  			The URL for our project would normally look something like this: http://localhost/rest-api-php/public. However, this URL may change based on the name of the project. However, the root URL, http://localhost/rest-api-php/public, doesn't change.
-  			<br>
-  			The.htaccess file we use to implement URL rewriting eliminates the need for extra prefixes like index.php or.php when accessing our URLs.  
+  			Normally, our project's URL would look something like this: http://localhost/rest-api-php/public. However, depending on the project name, this URL might alter. Nonetheless, http://localhost/rest-api-php/public, the root URL, remains unchanged.
+			<br>
+			We implement URL rewriting using a .htaccess file, which removes the requirement for unnecessary prefixes like index.php or.php when accessing our URLs.
+
+			<br><br>
+			Using the index.php file in the public folder will help to simplify the process of testing the API endpoints for our project. This file serves as our application's launchpad and includes any configurations that are required.
   		</p>
 
-
+  		<a href="javascript:;" name="database"></a>
   		<h5 class="fw-bold">Database</h5>
   		<p>
-  			We configure our database connection to make sure that our API endpoints and the database communicate with each other. All of the necessary configurations are contained in the bootstrap.php file for ease of use. By importing this file into our index.php, it becomes easier to manage imports and configurations.
+  			We will use MySQL to power our simple API
+  			<br>
+  			We configure our database connection with database name "api.sample" to make sure that our API endpoints and the database communicate with each other. All of the necessary configurations are contained in the bootstrap.php file for ease of use. By importing this file into our index.php, it becomes easier to manage imports and configurations.
   		</p>
 
+  		<a href="javascript;" name="token"></a>
+  		<h5 class="fw-bold">JWTs</h5>
+  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
+  		<a href="javascript:;" name="register"></a>
   		<h5 class="fw-bold">Register</h5>
-  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  		<p>
+  			To register an api users, please navigate to our user interface. http://localhost/rest-api-php/register.php is the correct URL to use. if you do not change your  project's directory or register file name.
+  			<br><br>
+  			The API users will have to register into the database to be able to access the full functionality of the API regarding token authentication.
+  			<br><br>
+  			Create a connection to our database so that api users may be added to the "api_users" table in our "api.sample" database with ease. A confirmation message verifying the user's inclusion in the database will be sent after their successful registration.
+  		</p>
 
-
+  		<a href="javascript:;" name="login"></a>
   		<h5 class="fw-bold">Login</h5>
-  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+  		<p>
+  			Send the created api user's username and password in JSON format, as shown below, to the login endpoint (http://localhost/rest-api-php/public/login.php), and initiate the request:
+  			<br>
+			<code>
+				{
+				   "username" : "apiusername",
+				   "password" : "apiuserpassword"
+				}
+			</code>
+  			<br><br>
+  			The "public" folder acts as the request entry point for our project, lets proceed to test the system by logining in.
+  			<br>
+  			we’ll send a request containing the username and password of the user profiled or created in our frontend register.php UI. We’ll pass the required user details in JSON format:
+  		</p>
 
 
   		<h5 class="fw-bold">URL</h5>
@@ -254,13 +278,6 @@
   		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 
-  		<h5 class="fw-bold">Token</h5>
-  		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-  		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
 
   		<h5 class="fw-bold">Security</h5>
