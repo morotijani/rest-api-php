@@ -322,13 +322,13 @@
   			Get all users : <code>http://localhost/rest-api-php/users</code> GET
   			<br>
   			<br>
-  			Get one user : <code>http://localhost/rest-api-php/users/userid</code> GET
+  			Get one user : <code>http://localhost/rest-api-php/users/{userid}</code> GET
   			<br>
   			<br>
-  			Delete user : <code>http://localhost/rest-api-php/users/userid</code> DELETE
+  			Delete user : <code>http://localhost/rest-api-php/users/{userid}</code> DELETE
   			<br>
   			<br>
-  			Update user : <code>http://localhost/rest-api-php/users/userid</code> PUT
+  			Update user : <code>http://localhost/rest-api-php/users/{userid}</code> PUT
   			<br>
   			<code>{"user_fullname" : "", "user_email" : ""}</code>
   			<br>
