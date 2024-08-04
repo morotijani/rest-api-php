@@ -219,7 +219,6 @@
   			Normally, our project's URL would look something like this: http://localhost/rest-api-php/public. However, depending on the project name, this URL might alter. Nonetheless, http://localhost/rest-api-php/public, the root URL, remains unchanged.
 			<br>
 			We implement URL rewriting using a .htaccess file, which removes the requirement for unnecessary prefixes like index.php or.php when accessing our URLs.
-
 			<br><br>
 			Using the index.php file in the public folder will help to simplify the process of testing the API endpoints for our project. This file serves as our application's launchpad and includes any configurations that are required.
   		</p>
@@ -304,9 +303,41 @@
   		</p>
 
 
+  		<a href="javascript:;" name="urls"></a>
   		<h5 class="fw-bold">URL</h5>
   		<p>
-  			// first item in the url is always the table name
+  			Main project url : <code>http://localhost/rest-api-php/public/</code>
+  			<br>
+  			<br>
+  			Register api user url : <code>http://localhost/rest-api-php/register.php</code> POST
+  			<br>
+  			<br>
+  			Login api user url : <code>http://localhost/rest-api-php/login.php</code> POST
+  			<br>
+			<code>{"username" : "apiusername", "password" : "apiuserpassword"}</code>
+  			<br>
+  			<br>
+  			All users : <code>http://localhost/rest-api-php/users</code> GET
+  			<br>
+  			<br>
+  			Refresh api user login tokens: <code>http://localhost/rest-api-php/refresh.php</code> POST
+  			<br>
+  			<code>{"token" : "apiusername"}</code>
+  			<br>
+  			<br>
+  			Create user : <code>http://localhost/rest-api-php/users/userid</code> POST
+  			<br>
+  			<code>{"user_fullname":"", "user_email": "", "user_password":""}</code> 
+  			<br>
+  			<br>
+  			Get one user : <code>http://localhost/rest-api-php/users/userid</code> GET
+  			<br>
+  			Delete user : <code>http://localhost/rest-api-php/users/userid</code> DELETE
+  			<br>
+  			Update user : <code>http://localhost/rest-api-php/users/userid</code> PUT
+  			<br>
+  			<br>
+  			Note : first item that comes after the "main project url" is always the table name.
   		</p>
 
   		<a href="javascript:;" name="security"></a>
