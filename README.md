@@ -42,3 +42,6 @@ Step 4: Verifying the Import
 Step 5: Fill the details in the .env file.
 
 
+NB: Get complete and genuine verion here https://github.com/morotijani/truss ... i just did not want to delete this repo becuase people have started and already using it.
+
+
